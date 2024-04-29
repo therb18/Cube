@@ -24,19 +24,19 @@ public class PlayerController : MonoBehaviour
         //Movement
         _moveVector = Vector3.zero;
 
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.forward;
         }
-         if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             _moveVector -= transform.forward;
         }
-         if(Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             _moveVector += transform.right;
         }
-         if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             _moveVector -= transform.right;
         }
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         _CharacterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
 
         //Spop fall if on the grouhd
-        if(_CharacterController.isGrounded)
+        if (_CharacterController.isGrounded)
         {
             _fallVelocity = 0;
         }
