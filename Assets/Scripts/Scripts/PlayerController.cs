@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float gravity = 9.8f;
-    public float jumpForce;
     public float speed;
 
     private Vector3 _moveVector;
@@ -40,12 +39,6 @@ public class PlayerController : MonoBehaviour
         {
             _moveVector -= transform.right;
         }
-
-        //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && _CharacterController.isGrounded)
-        {
-            _fallVelocity = -jumpForce;
-        }
     }
 
     // Update is called once per frame
@@ -58,7 +51,7 @@ public class PlayerController : MonoBehaviour
         _fallVelocity += gravity * Time.fixedDeltaTime;
         _CharacterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
 
-        //Spop fall if on the grouhd
+        //Spop fall if on the ground
         if (_CharacterController.isGrounded)
         {
             _fallVelocity = 0;
