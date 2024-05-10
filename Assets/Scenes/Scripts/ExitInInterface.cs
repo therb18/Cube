@@ -7,7 +7,7 @@ public class ExitInInterface : MonoBehaviour
 {
     public void ExitInContrMenu()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(0);
     }
     // Start is called before the first frame update
     void Start()
