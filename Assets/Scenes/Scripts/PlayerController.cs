@@ -5,27 +5,38 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float gravity = 9.8f;
+    public float JumpForce;
     public float speed;
+    public Animator animator;
 
-    private Vector3 _moveVector;
     private float _fallVelocity = 0;
+    private CharacterController _characterController;
+    private Vector3 _moveVector;
 
-    private CharacterController _CharacterController;
 
     // Start is called before the first frame update
     void Start()
     {
-        _CharacterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
-        //Movement
+        MovementUpdate();
+    }
+
+    private void MovementUpdate()
+    {
+
         _moveVector = Vector3.zero;
 
         if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.forward;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            _moveVector -= transform.right;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -35,26 +46,17 @@ public class PlayerController : MonoBehaviour
         {
             _moveVector += transform.right;
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            _moveVector -= transform.right;
-        }
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //Movement
-        _CharacterController.Move(_moveVector * speed * Time.fixedDeltaTime);
+        _characterController.Move(_moveVector * speed * Time.fixedDeltaTime);
 
-        //Fall and jump
-        _fallVelocity += gravity * Time.fixedDeltaTime;
-        _CharacterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
-
-        //Spop fall if on the ground
-        if (_CharacterController.isGrounded)
+        _fallVelocity += gravity * Time.deltaTime;
+        _characterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
+        if (_characterController.isGrounded)
         {
             _fallVelocity = 0;
         }
     }
+
 }

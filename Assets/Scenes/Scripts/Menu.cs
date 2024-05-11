@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+namespace Assets.Scenes.Scripts
 {
-    public void StartGame()
+    public class Menu : MonoBehaviour
     {
-        SceneManager.LoadScene(1);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        public override bool Equals(object other) => base.Equals(other);
+        public override int GetHashCode() => base.GetHashCode();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void StartGame()
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        public override string ToString() => base.ToString();
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
