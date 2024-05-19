@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Exit.unity
     guid: c40188e6674b97842ae42569a5f2d0c9
   - enabled: 1
-    path: Assets/Scenes/Exit IN GAME.unity
-    guid: c3f7855b376d9f841bea9aca40e92547
+    path: Assets/Scenes/EndGame.unity
+    guid: ab239cf618c564945b7591d2578d0870
   m_configObjects: {}
