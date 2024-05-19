@@ -76,10 +76,10 @@ public class EnemyAI : MonoBehaviour
 
         _playerHealth.DealDamage(damage);
     }
-    private void NoticePlayerUpdate()
+   private void NoticePlayerUpdate()
     {
         _isPlayerNoticed = false;
-        if (_playerHealth.value <= 0) return;
+        //if (_playerHealth.value <= 0) return;
 
         var direction = player.transform.position - transform.position;
         if (Vector3.Angle(transform.forward, direction) < viewAngle)
@@ -93,7 +93,7 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-    }
+   }
     private void ChaseUpdate()
     {
         if (_isPlayerNoticed)
