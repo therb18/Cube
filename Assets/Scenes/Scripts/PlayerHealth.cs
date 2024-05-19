@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject gameOverScreen;
     public AudioSource TheEnd;
     public AudioSource Fon;
+    public RectTransform valueRectTransfrom;
 
     private float _maxValue;
 
@@ -22,6 +23,14 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerisDead();
         }
+
+        DrawHealthBar();
+        
+    }
+
+    private void DrawHealthBar()
+    {
+        valueRectTransfrom.anchorMax = new Vector2(value / _maxValue, 1);
     }
     private void PlayerisDead()
     {
@@ -36,9 +45,10 @@ public class PlayerHealth : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start()
+   private void Start()
     {
         _maxValue = value;
+        DrawHealthBar();
     }
 
     // Update is called once per frame
