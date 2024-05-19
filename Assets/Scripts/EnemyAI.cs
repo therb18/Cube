@@ -9,18 +9,10 @@ public class EnemyAI : MonoBehaviour
     public PlayerController player;
     public float viewAngle;
     public float damage = 30;
-    public float attackDistance = 3;
-    public Animator animator;
 
     private NavMeshAgent _navMeshAgent;
     private bool _isPlayerNoticed;
-    private PlayerHealth _playerHealth;
-    private EnemyHealth _enemyHealth;
-
-    public bool IsAlive()
-    {
-        return _enemyHealth.IsAlive();
-    }
+    private PlayerHealth1 _playerHealth1;
 
     private void PickNewPatroPoint()
     {
@@ -36,18 +28,17 @@ public class EnemyAI : MonoBehaviour
     private void InitComponentLinks()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _playerHealth = player.GetComponent<PlayerHealth>();
-        _enemyHealth = GetComponent<EnemyHealth>();
+        _playerHealth1 = player.GetComponent<PlayerHealth1>();
     }
 
     private void PatrolUpdate()
     {
-        if (_isPlayerNoticed == false)
+        if (!_isPlayerNoticed)
         {
-            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            if(_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 PickNewPatroPoint();
-            }
+            } 
         }
     }
     // Update is called once per frame
@@ -56,44 +47,36 @@ public class EnemyAI : MonoBehaviour
     {
         NoticePlayerUpdate();
         ChaseUpdate();
-        PatrolUpdate();
         AttackUpdate();
+        PatrolUpdate();
     }
+
     private void AttackUpdate()
     {
         if (_isPlayerNoticed)
         {
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                animator.SetTrigger("attack");
+                _playerHealth1.GetComponent<PlayerHealth1>().DealDamage(damage * Time.deltaTime);
             }
         }
     }
-    public void AttackDamage()
+    private void NoticePlayerUpdate()
     {
-        if (!_isPlayerNoticed) return;
-        if (_navMeshAgent.remainingDistance > (_navMeshAgent.stoppingDistance + attackDistance)) return;
-
-        _playerHealth.DealDamage(damage);
-    }
-   private void NoticePlayerUpdate()
-    {
-        _isPlayerNoticed = false;
-        //if (_playerHealth.value <= 0) return;
-
         var direction = player.transform.position - transform.position;
+        _isPlayerNoticed = false;
         if (Vector3.Angle(transform.forward, direction) < viewAngle)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
-            {
+            if (Physics.Raycast(transform.position + Vector3.zero, direction, out hit))
+
                 if (hit.collider.gameObject == player.gameObject)
                 {
                     _isPlayerNoticed = true;
                 }
-            }
         }
-   }
+    }
+
     private void ChaseUpdate()
     {
         if (_isPlayerNoticed)
