@@ -32,7 +32,12 @@ public class PlayerHealth1 : MonoBehaviour
 
     }
 
-    private void DrawHealthBar() => valueRectTransform.anchorMax = new Vector2(value / _maxValue, 1);    // Start is called before the first frame update
+    private void DrawHealthBar()
+    {
+        valueRectTransform.anchorMax = new Vector2(value/_maxValue, 1);
+    }
+
+    // Start is called before the first frame update
     void Start()
     {
         _maxValue = value;

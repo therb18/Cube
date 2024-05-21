@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     public PlayerController player;
     public float viewAngle;
     public float damage = 30;
+    public Animator animator;
 
     private NavMeshAgent _navMeshAgent;
     private bool _isPlayerNoticed;
@@ -58,9 +59,11 @@ public class EnemyAI : MonoBehaviour
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 _playerHealth1.GetComponent<PlayerHealth1>().DealDamage(damage * Time.deltaTime);
+                animator.SetTrigger("attack");
             }
         }
     }
+
     private void NoticePlayerUpdate()
     {
         var direction = player.transform.position - transform.position;

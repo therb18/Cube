@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float gravity = 9.8f;
-    public float JumpForce;
     public float speed;
-    public Animator animator;
 
     private float _fallVelocity = 0;
     private CharacterController _characterController;
