@@ -38,6 +38,5 @@ public class Fireball : MonoBehaviour
         {
             enemyHealth.DealDamage(damage);
         }
-
     }
 }

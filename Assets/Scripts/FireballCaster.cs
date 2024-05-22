@@ -1,21 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FireballCaster : MonoBehaviour
 {
-    public GameObject fireballPrefab;
+    public Fireball fireballPrefab;
     public Transform fireballSourceTransform;
-    private void Update()
+
+    public float damage = 10;
+
+    void Start()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Instantiate(fireballPrefab, fireballSourceTransform.position, fireballSourceTransform.rotation);
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
-    private void Start()
+    // Update is called once per frame
+    void Update()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        if (Input.GetMouseButtonDown(0))
+        {
+            var fireball = Instantiate(fireballPrefab, fireballSourceTransform.position, fireballSourceTransform.rotation);
+            fireball.damage = damage;
+        }
     }
 }
