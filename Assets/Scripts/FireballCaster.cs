@@ -13,4 +13,9 @@ public class FireballCaster : MonoBehaviour
             Instantiate(fireballPrefab, fireballSourceTransform.position, fireballSourceTransform.rotation);
         }
     }
+    private void Start()
+    {
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+    }
 }

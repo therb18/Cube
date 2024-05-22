@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed;
+    public float Speed;
     public float lifetime;
+    public float damage = 10;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Invoke("DestroyFireBall", lifetime);
+    }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
         MoveFixedUpdate();
     }
-
     private void MoveFixedUpdate()
     {
-        transform.position += transform.forward * speed * Time.fixedDeltaTime;
+        transform.position += transform.forward * Speed * Time.fixedDeltaTime;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject);
-
-        if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
-            return;
-        if (collision.gameObject.TryGetComponent<Fireball>(out Fireball fireball))
-            return;
-        DestroyFireball();
+        DamageEnemy(collision);
+        DestroyFireBall();
     }
-
-    private void DestroyFireball()
+    private void DestroyFireBall()
     {
         Destroy(gameObject);
     }
-
-    private void Start()
+    private void DamageEnemy(Collision collision)
     {
-        Invoke("Destroy Fireball", lifetime);
+        var enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.DealDamage(damage);
+        }
+
     }
 }

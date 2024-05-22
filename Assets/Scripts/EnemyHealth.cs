@@ -22,13 +22,13 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("damage");
+            animator.SetTrigger("hit");
         }
     }
 
     private void EnemyDeath()
     {
-        animator.SetTrigger("dead");
+        animator.SetTrigger("death");
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
