@@ -17,6 +17,8 @@ public class ContinueController : MonoBehaviour
         Button_Exit.SetActive(false);
         Button_Restart.SetActive(false);
         TXT_Advice.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         Time.timeScale = 1f;
     }

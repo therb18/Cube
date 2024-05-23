@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public float value = 100;
     public Animator animator;
+    public AudioSource Audio;
 
     public bool IsAlive()
     {
@@ -32,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        //Destroy(gameObject);
+        Audio.Play();
 
     }
 

@@ -17,7 +17,8 @@ public class Paused : MonoBehaviour
         Button_Exit.SetActive(true);
         Button_Restart.SetActive(true);
         TXT_Advice.SetActive(true);
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0;
     }
     

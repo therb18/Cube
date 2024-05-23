@@ -8,7 +8,7 @@ public class EndGamePortal : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
-
+        
         if (player != null)
         {
             SceneManager.LoadScene(3);
