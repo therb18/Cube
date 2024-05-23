@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
     }
 
